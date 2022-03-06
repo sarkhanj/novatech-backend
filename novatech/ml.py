@@ -12,13 +12,11 @@ warnings.filterwarnings('ignore')
 
 dataset = Dataset.objects.all()
 
+
 RF = None
 x = None
-
-
 def train():
     global RF, x
-    # crop = pd.read_csv('Crop_recommendation.csv')
     crop = pd.DataFrame(list(dataset.values()))
     crop.head()
     features = crop[['N', 'P', 'K', 'temperature',
@@ -40,18 +38,17 @@ def predict_(record):
     data = [record.N, record.P, record.K, record.temperature,
             record.humidity, record.ph, record.rainfall]
 
-    print(record.N)
-    prediction_RF = RF.predict_proba(np.array([data]))[0]
-    print(prediction_RF)
-    print(RF.classes_)
+    prediction_RF = RF.predict_proba(np.array([data]))[0]    
     probs = []
     types = []
     for count, i in enumerate(prediction_RF):
         if i > 0:
             probs.append([list(prediction_RF).index(i), i])
-            # prediction_RF = np.delete(prediction_RF, count-2)
             prediction_RF[list(prediction_RF).index(i)] = 0
     for item in probs:
         types.append([RF.classes_[item[0]], item[1]])
 
     return [x, types]
+
+
+
