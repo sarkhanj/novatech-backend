@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+
+
 class Dataset(models.Model):
     N = models.IntegerField()
     P = models.IntegerField()
@@ -18,6 +20,7 @@ class Regions(models.Model):
 
 
 class Records(models.Model):
+    record_id = models.AutoField(primary_key=True, null=False)
     N = models.IntegerField()
     P = models.IntegerField()
     K = models.IntegerField()
@@ -25,5 +28,4 @@ class Records(models.Model):
     humidity = models.FloatField()
     ph = models.FloatField()
     rainfall = models.FloatField()
-    region_id = models.ForeignKey(Regions,on_delete = models.CASCADE)
-
+    region_id = models.ForeignKey(Regions, on_delete=models.CASCADE)

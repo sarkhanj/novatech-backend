@@ -41,7 +41,7 @@ def recordsApi(request, id=0):
 
 def mlApi(request, id=0):
     if request.method == 'GET':
-        record = Records.objects.filter(id = id)
+        record = Records.objects.filter(record_id = id)
         # print(record[0])
         result =predict_(record[0])
         # result_serializer = RecordsSerializer(record, many=True)

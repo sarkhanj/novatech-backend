@@ -16,6 +16,6 @@ class RegionsSerializer(serializers.ModelSerializer):
 class RecordsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Records
-        fields = ('N', 'P', 'K', 'temperature',
+        fields = ('record_id', 'N', 'P', 'K', 'temperature',
                   'humidity', 'ph', 'rainfall', 'region_id')
 
